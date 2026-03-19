@@ -1,7 +1,36 @@
+
+import java.util.Scanner;
+
 public class SubarraysDivByK {
-    
-        // TODO: Read n and k
-        // TODO: Read array elements
-        // TODO: Count and print the number of subarrays with sum divisible by k
-    
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+
+        int n = sc.nextInt();
+        int k = sc.nextInt();
+
+        int[] nums = new int[n];
+        for (int i = 0; i < n; i++) {
+            nums[i] = sc.nextInt();
+        }
+
+        int[] freq = new int[k];
+        freq[0] = 1;
+
+        int sum = 0;
+        int count = 0;
+
+        for (int i = 0; i < n; i++) {
+            sum += nums[i];
+
+            int rem = sum % k;
+            if (rem < 0) {
+                rem += k;
+            }
+
+            count += freq[rem];
+            freq[rem]++;
+        }
+
+        System.out.println(count);
+    }
 }
